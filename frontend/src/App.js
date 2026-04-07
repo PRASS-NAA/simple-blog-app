@@ -113,7 +113,7 @@ function App() {
               required
             />
             <textarea
-              placeholder="Write your post content here ....."
+              placeholder="Write your post content here below"
               value={form.content}
               onChange={(e) => setForm({...form, content: e.target.value})}
               required
