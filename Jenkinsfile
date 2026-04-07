@@ -92,7 +92,7 @@ pipeline{
                     git config user.email "prassml23@gmail.com"
                     git config user.name "PRASS-NAA"
                     git commit -am "update image to ${TAG}" || echo "No changes"
-                    git push
+                    git push --set-upstream origin master
                     """
                 }
             }
