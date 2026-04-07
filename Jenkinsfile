@@ -88,12 +88,21 @@ pipeline{
                     sed -i 's|image: prass6naa/blog-backend:.*|image: prass6naa/blog-backend:${TAG}|' k8s/backend/backend.yaml
                     """
 
-                    sh """
-                    git config user.email "prassml23@gmail.com"
-                    git config user.name "PRASS-NAA"
-                    git commit -am "update image to ${TAG}" || echo "No changes"
-                    git push --set-upstream origin master
-                    """
+                    withCredentials([usernamePassword(
+                        credentialsId: 'github-creds',
+                        usernameVariable: 'GIT_USER',
+                        passwordVariable: 'GIT_PASS'
+                    )]) {
+                        sh """
+                        git config user.email "prassml23@gmail.com"
+                        git config user.name "PRASS-NAA"
+
+                        git remote set-url origin https://\$GIT_USER:\$GIT_PASS@github.com/PRASS-NAA/blog-app-k8-manifests.git
+
+                        git commit -am "update image to ${TAG}" || echo "No changes"
+                        git push origin HEAD:master
+                        """
+                    }
                 }
             }
         }
