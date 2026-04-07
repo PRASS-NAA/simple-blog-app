@@ -84,8 +84,8 @@ pipeline{
                     git 'https://github.com/PRASS-NAA/blog-app-k8-manifests.git'
 
                     sh """
-                    sed -i 's|image: prass6naa/blog-frontend:.*|image: prass6naa/blog-frontend:${TAG}|' k8s/frontend/deployment.yaml
-                    sed -i 's|image: prass6naa/blog-backend:.*|image: prass6naa/blog-backend:${TAG}|' k8s/backend/deployment.yaml
+                    sed -i 's|image: prass6naa/blog-frontend:.*|image: prass6naa/blog-frontend:${TAG}|' k8s/frontend/frontend.yaml
+                    sed -i 's|image: prass6naa/blog-backend:.*|image: prass6naa/blog-backend:${TAG}|' k8s/backend/backend.yaml
                     """
 
                     sh """
